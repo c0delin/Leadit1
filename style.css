@@ -1,0 +1,431 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Pretendard', sans-serif;
+  background: #111;
+  color: #fff;
+}
+
+/* ======================
+   HEADER
+====================== */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+}
+
+.logo img {
+  height: 40px;
+}
+
+/* ======================
+   NAV
+====================== */
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav > a,
+.nav-item > a {
+  margin-left: 30px;
+  text-decoration: none;
+  color: #ddd;
+  font-size: 15px;
+  transition: color 0.35s ease;
+  position: relative;
+}
+
+nav > a:hover,
+.nav-item > a:hover {
+  color: #aaa;
+}
+
+/* ======================
+   DROPDOWN
+====================== */
+.nav-item {
+  position: relative;
+}
+
+/* hover bridge */
+.nav-item::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 8px;
+}
+
+/* dropdown container */
+.dropdown {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 180px;
+  background: #000;
+  padding: 10px 0 22px;
+
+  opacity: 0;
+  transform: translateY(-10px);
+  visibility: hidden;
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    visibility 0s linear 0.35s;
+}
+
+/* open */
+.nav-item:hover .dropdown,
+.dropdown:hover {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+/* dropdown links */
+.dropdown a {
+  display: block;
+  padding: 14px 22px;
+  font-size: 15px;
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.dropdown a:hover {
+  color: #f0e79f;
+}
+
+/* ======================
+   HERO
+====================== */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #000;
+}
+
+.hero-text h1 {
+  font-size: 60px;
+  font-weight: 800;
+  margin-bottom: 24px;
+}
+
+.hero-quote {
+  font-size: 26px;
+  color: #ddd;
+  letter-spacing: 0.05em;
+}
+
+.quote-mark {
+  font-size: 48px;
+  color: #555;
+  margin: 0 6px;
+}
+
+.detail-word {
+  color: #f0e79f;
+  cursor: pointer;
+}
+
+/* ======================
+   SPOTLIGHT
+====================== */
+#spotlight {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--x) var(--y),
+    transparent 0%,
+    rgba(0, 0, 0, 0.92) 45%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 2000;
+}
+
+#spotlight.active {
+  opacity: 1;
+  animation: spotlightZoom 1.2s ease forwards;
+}
+
+@keyframes spotlightZoom {
+  from {
+    background-size: 0% 0%;
+  }
+  to {
+    background-size: 220% 220%;
+  }
+}
+
+/* ======================
+   TEACHERS PAGE
+====================== */
+
+.teacher-box {
+  display: flex;
+  gap: 28px;
+  padding: 22px;
+  border: 1px solid #333;
+  margin-bottom: 22px;
+  cursor: pointer;
+  transition: background 0.35s ease;
+}
+
+.teacher-box:hover {
+  background: #1a1a1a;
+}
+
+.teacher-box img {
+  width: 160px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.teacher-info h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.teacher-info p {
+  color: #ccc;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+/* detail */
+.teacher-detail {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.6;
+  transition: max-height 0.45s ease, opacity 0.35s ease;
+}
+
+.teacher-box.open .teacher-detail {
+  max-height: 200px;
+  opacity: 1;
+}
+
+/* ======================
+   FOOTER
+====================== */
+footer {
+  padding: 60px;
+  text-align: center;
+  background: #000;
+  color: #777;
+  font-size: 14px;
+}
+/* ======================
+INSTAGRAM ICON SECTION
+====================== */
+.insta-section{
+  background:#000;              
+  text-align:center;
+  padding:120px 0 80px;         
+}
+
+.insta-icon{
+  width:60px;
+  height:60px;
+  transition:0.3s ease;
+}
+
+.insta-icon:hover{
+  transform:scale(1.15);
+}
+
+/* ======================
+반응형 모바일 대응 (PC는 절대 건드리지 않음)
+====================== */
+
+@media (max-width: 768px) {
+
+  header {
+    position: relative;
+  }
+
+  header .logo img {
+    width: 130px;
+  }
+
+  /* 모바일 햄버거 버튼 */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 400;
+  }
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+  .hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* nav 전체 */
+  header nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 200;
+  }
+
+  header nav.active {
+    max-height: 1200px;
+  }
+
+  /* 메뉴 아이템 */
+  nav .nav-item {
+    border-bottom: 1px solid #222;
+    position: static !important;
+    width: 100%;
+  }
+
+  nav .nav-item > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 25px;
+    font-size: 17px;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  /* ★★★ 호버 완전 차단 (중요 수정!) ★★★ */
+  nav .nav-item:not(.active):hover .dropdown,
+  .nav-item:not(.active):hover > .dropdown {
+    max-height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition-duration: 0s !important;
+  }
+
+  /* 드롭다운 화살표 */
+  nav .nav-item > a::after {
+    content: "▼";
+    font-size: 12px;
+    transition: 0.3s ease;
+    margin-left: 8px;
+  }
+
+  nav .nav-item.active > a::after {
+    transform: rotate(180deg);
+  }
+
+  /* 드롭다운 기본 */
+  nav .nav-item .dropdown {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: #1a1a1a;
+    position: static !important;
+    width: 100% !important;
+  }
+
+  /* 클릭 전에는 무조건 숨김 */
+  nav .nav-item:not(.active) .dropdown {
+    max-height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  /* 클릭하면 열림 */
+  nav .nav-item.active .dropdown {
+    max-height: 450px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  nav .nav-item .dropdown a {
+    display: block;
+    padding: 14px 25px 14px 45px;
+    font-size: 15.5px;
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  nav .nav-item .dropdown a:hover {
+    color: #fff;
+    background: #222;
+    padding-left: 50px;
+  }
+
+  /* 기존 모바일 스타일 유지 */
+  .hero .hero-text h1 {
+    font-size: 26px;
+  }
+  .hero .hero-text p.hero-quote {
+    font-size: 16px;
+    padding: 0 10px;
+  }
+
+  .insta-section .insta-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  footer {
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+  }
+}
+
+/* 480px 이하 */
+@media (max-width: 480px) {
+  .hero .hero-text h1 {
+    font-size: 22px;
+  }
+  .hero .hero-text p.hero-quote {
+    font-size: 14px;
+  }
+  .insta-section .insta-icon {
+    width: 40px;
+    height: 40px;
+  }
+}

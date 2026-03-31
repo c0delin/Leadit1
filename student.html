@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>합격자 | LEADIT</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* ======================
+기본
+====================== */
+
+main{
+  padding:140px 0 80px;
+  max-width:1100px;
+  margin:auto;
+  color:#fff;
+  text-align:center;
+}
+
+.section-title{
+  font-size:28px;
+  margin-bottom:50px;
+}
+
+/* ======================
+슬라이더
+====================== */
+
+.slider{
+  position:relative;
+  overflow:hidden;
+  margin-bottom:100px;
+}
+
+.slider-track{
+  display:flex;
+  transition:transform .4s ease;
+  position:relative;
+  z-index:1;
+}
+
+.slide{
+  min-width:100%;
+  display:flex;
+  justify-content:center;
+}
+
+.slide img{
+  width:100%;
+  max-width:600px;
+  border-radius:10px;
+}
+
+/* ======================
+화살표 버튼 (투명으로 변경!)
+====================== */
+
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background: transparent;           /* ← 투명 */
+  color:#fff;
+  border:none;
+  font-size:28px;
+  padding:12px 18px;
+  cursor:pointer;
+  z-index:10;
+  text-shadow: 0 0 12px rgba(0,0,0,0.9);   /* 투명해도 잘 보이게 */
+}
+
+.arrow.left{ left:10px; }
+.arrow.right{ right:10px; }
+
+.arrow:hover{
+  background: rgba(240, 231, 159, 0.25);   /* 호버 시 살짝 골드 반투명 */
+  color:#f0e79f;
+  transform:translateY(-50%) scale(1.1);
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+  <div class="logo">
+    <a href="index.html"><img src="logo.png"></a>
+  </div>
+
+  <!-- 모바일 햄버거 버튼 -->
+  <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav>
+    <div class="nav-item">
+      <a href="#">학원 소개</a>
+      <div class="dropdown">
+        <a href="greeting.html">인사말</a>
+        <a href="space.html">시설</a>
+        <a href="location.html">오시는 길</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">프로그램</a>
+      <div class="dropdown">
+        <a href="curriculum.html">커리큘럼</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">강사진</a>
+      <div class="dropdown">
+        <a href="teachers.html">강사진</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">합격자</a>
+      <div class="dropdown">
+        <a href="results.html">합격자 명단</a>
+        <a href="student.html">합격자 후기</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">문의</a>
+      <div class="dropdown">
+        <a href="sns.html">SNS</a>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<main>
+
+  <!-- 맨 위 제목 -->
+  <div class="section-title">대학 합격 후기</div>
+
+  <!-- 중앙대 슬라이드 -->
+  <div class="slider">
+    <button class="arrow left" onclick="prevSlide('cau')">‹</button>
+    <div class="slider-track" id="cau">
+      <div class="slide"><img src="st/cau1.jpg"></div>
+      <div class="slide"><img src="st/cau2.jpg"></div>
+      <div class="slide"><img src="st/cau3.jpg"></div>
+      <div class="slide"><img src="st/cau4.jpg"></div>
+      <div class="slide"><img src="st/cau5.jpg"></div>
+      <div class="slide"><img src="st/cau6.jpg"></div>
+    </div>
+    <button class="arrow right" onclick="nextSlide('cau')">›</button>
+  </div>
+
+  <!-- 동아방송대 슬라이드 -->
+  <div class="slider">
+    <button class="arrow left" onclick="prevSlide('dima')">‹</button>
+    <div class="slider-track" id="dima">
+      <div class="slide"><img src="st/dima1.jpg"></div>
+      <div class="slide"><img src="st/dima2.jpg"></div>
+      <div class="slide"><img src="st/dima3.jpg"></div>
+      <div class="slide"><img src="st/dima4.jpg"></div>
+      <div class="slide"><img src="st/dima5.jpg"></div>
+    </div>
+    <button class="arrow right" onclick="nextSlide('dima')">›</button>
+  </div>
+
+  <!-- 청강대 슬라이드 -->
+  <div class="slider">
+    <button class="arrow left" onclick="prevSlide('che')">‹</button>
+    <div class="slider-track" id="che">
+      <div class="slide"><img src="st/che1.jpg"></div>
+      <div class="slide"><img src="st/che2.jpg"></div>
+      <div class="slide"><img src="st/che3.jpg"></div>
+      <div class="slide"><img src="st/che4.jpg"></div>
+      <div class="slide"><img src="st/che5.jpg"></div>
+      <div class="slide"><img src="st/che6.jpg"></div>
+    </div>
+    <button class="arrow right" onclick="nextSlide('che')">›</button>
+  </div>
+
+</main>
+
+
+<footer>
+  학원명 : 리디트 연기학원<br>
+  학원등록번호 : 제4140호<br>
+  TEL 0507-1481-3478<br>
+  업무시간 : 매일 10:00~22:00<br>
+  대표 : 문규민<br>
+  사업자번호 : 824-95-01793<br>
+  서울시 관악구 남현동 602-253 1F
+</footer>
+
+<script>
+// ======================
+// 모바일 햄버거 + 드롭다운 (아코디언)
+// ======================
+const hamburger = document.querySelector(".hamburger");
+const nav = document.querySelector("header nav");
+const navItems = document.querySelectorAll("header .nav-item > a");
+
+function mobileMenuHandler() {
+  hamburger.addEventListener("click", () => {
+    nav.classList.toggle("active");
+    hamburger.classList.toggle("open");
+  });
+
+  navItems.forEach(item => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      const parent = item.parentElement;
+      parent.classList.toggle("active");
+    });
+  });
+}
+
+mobileMenuHandler();
+
+window.addEventListener("resize", () => {
+  nav.classList.remove("active");
+  hamburger.classList.remove("open");
+  document.querySelectorAll(".nav-item").forEach(ni => ni.classList.remove("active"));
+});
+
+// ======================
+// 기존 슬라이더 스크립트 (그대로 유지)
+// ======================
+const indexMap = {};
+
+/* 다음 */
+function nextSlide(id){
+  const track = document.getElementById(id);
+  const slides = track.children;
+
+  if(indexMap[id] === undefined) indexMap[id] = 0;
+
+  indexMap[id]++;
+  if(indexMap[id] >= slides.length){
+    indexMap[id] = slides.length - 1;
+  }
+
+  track.style.transform = `translateX(-${indexMap[id]*100}%)`;
+}
+
+/* 이전 */
+function prevSlide(id){
+  const track = document.getElementById(id);
+
+  if(indexMap[id] === undefined) indexMap[id] = 0;
+
+  indexMap[id]--;
+  if(indexMap[id] < 0){
+    indexMap[id] = 0;
+  }
+
+  track.style.transform = `translateX(-${indexMap[id]*100}%)`;
+}
+</script>
+
+</body>
+</html>

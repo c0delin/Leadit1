@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>강사진 | LEADIT</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* ======================
+TEACHER BOX
+====================== */
+.teacher-box{
+  display:flex;
+  gap:30px;
+  background:#000;
+  padding:24px;
+  cursor:pointer;
+  border-radius:12px;
+  transition: all 0.3s;
+}
+
+.teacher-box:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(240, 231, 159, 0.15);
+}
+
+.teacher-box img{
+  width:200px;
+  height:260px;
+  object-fit:cover;
+  border-radius:10px;
+  flex-shrink:0;
+}
+
+.teacher-summary{
+  margin-top:14px;
+  color:#bbb;
+  font-size:14px;
+  line-height:1.7;
+}
+
+.teacher-detail{
+  display:none;
+}
+
+/* ======================
+PROFILE POPUP
+====================== */
+.profile-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  pointer-events:none;
+  transition:0.35s;
+  z-index:9999;
+}
+
+.profile-overlay.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.profile-popup{
+  width:900px;
+  max-height:80vh;
+  background:#111;
+  border-radius:16px;
+  display:flex;
+  gap:40px;
+  padding:40px;
+  overflow-y:auto;
+  transform:scale(0.85);
+  transition:0.35s;
+}
+
+.profile-overlay.active .profile-popup{
+  transform:scale(1);
+}
+
+.profile-popup img{
+  width:260px;
+  height:340px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.profile-text h2{
+  margin:0;
+  font-size:26px;
+}
+
+.profile-text p{
+  color:#aaa;
+}
+
+.profile-text .full-detail{
+  margin-top:20px;
+  line-height:1.9;
+  color:#ddd;
+}
+
+/* ======================
+파트 제목 스타일 (줄색 #f0e79f로 변경)
+====================== */
+.part-title{
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin: 80px 0 40px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #f0e79f;
+  position: relative;
+}
+
+.part-title::after{
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: #f0e79f;
+}
+
+/* ======================
+선생님 가로 정렬 그리드 (PC 2열, 모바일 1열)
+====================== */
+.teachers-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+  gap: 30px;
+}
+
+/* 모바일에서 제목 크기 + 그리드 1열로 */
+@media (max-width: 768px) {
+  .part-title{
+    font-size: 24px;
+    margin: 60px 0 30px;
+  }
+  .teachers-grid{
+    grid-template-columns: 1fr;
+  }
+  .teacher-box{
+    flex-direction: column;
+    gap:20px;
+  }
+  .teacher-box img{
+    width:100%;
+    height:280px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <img src="logo.png">
+    </a>
+  </div>
+
+  <!-- 모바일 햄버거 버튼 -->
+  <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav>
+    <div class="nav-item">
+      <a href="#">학원 소개</a>
+      <div class="dropdown">
+        <a href="greeting.html">인사말</a>
+        <a href="space.html">시설</a>
+        <a href="location.html">오시는 길</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">프로그램</a>
+      <div class="dropdown">
+        <a href="curriculum.html">커리큘럼</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">강사진</a>
+      <div class="dropdown">
+        <a href="teachers.html">강사진</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">합격자</a>
+      <div class="dropdown">
+        <a href="results.html">합격자 명단</a>
+        <a href="student.html">합격자 후기</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">문의</a>
+      <div class="dropdown">
+        <a href="sns.html">SNS</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section style="padding:140px 10% 80px; max-width:1100px; margin:auto;">
+
+  <!-- ====================== 연기 파트 ====================== -->
+  <h2 class="part-title">연기 파트</h2>
+  <div class="teachers-grid">
+
+    <!-- ===== 문규민 ===== -->
+    <div class="teacher-box"
+    onclick="openProfile(
+    'T/T1.jpg',
+    '문규민',
+    '대표 원장 / 연기',
+    document.getElementById('detail1').innerHTML
+    )">
+    <img src="T/T1.jpg">
+    <div class="teacher-info">
+      <h2>문규민</h2>
+      <p>대표 원장 / 연기</p>
+      <div class="teacher-summary">
+        現) GRIN 에이전시 연기 코치<br>
+        現) 리디트 연기학원 대표 원장<br>
+        前) 어썸크누아 연기학원<br>
+        前) 라온액터스 연기학원
+      </div>
+      <div id="detail1" class="teacher-detail">
+  現)GRIN 에이전시 연기 코치 <br>
+  現) 리디트 연기학원 대표 원장 <br>
+  前) 어썸크누아 연기학원 <br>
+  前) 라온액터스 연기학원 <br><br>
+
+  🎬영화<br>
+  -정직한후보2(장유정감독 작)<br>
+  -정직한후보1(장유정감독 작)<br>
+  -의건(부산국제단편영화제 초청)<br>
+  -가족사진관(KAFA, 영상진흥원 지원작)<br>
+  -섬브레로(상하이인권 영화제 초청)<br><br>
+
+  📽드라마<br>
+  -학교2017 (김정현,김세정 주연)<br>
+  -악동탐정스(에이핑크 남주 ,유선호 주연)<br>
+  -애간장(이정신,이열음 주연)<br>
+  -설강화(정해인,지수 주연)<br>
+  -필리핀 드라마 IPAGLABAN MO(KIMCHIU주연)<br><br>
+
+  🎥광고<br>
+  -KT&G릴 미니 메인모델<br>
+  -현대모비스 광고 몹쓸컴퍼니 시즌1,2<br>
+  -브로앤팁스 CF<br>
+  -W3W CF<br>
+  -뮤직카우 CF<br>
+  -SAMSUNG 케어 플러스 CF<br>
+  -초록우산 CF<br>
+  -칠성사이다 (악동뮤지션편)<br><br>
+
+  🗣연극<br>
+  -모피의마리(한국예술종합학교)<br>
+  -인생의 꿈 (한국예술종합학교)<br>
+  -블랙박스 (대학로)<br>
+  -벚꽃동산 (대학로)<br>
+  -유령 (대학로)<br><br>
+
+  외 다수<br><br>
+
+  🏆수상<br>
+  Shanghai PRIDE Film Festival 신인배우<br>
+  Moscow Shorts Film Festival 신인배우상<br>
+  Indie Visions Film Festival 화제의 배우상
+
+      </div>
+    </div>
+    </div>
+
+    <!-- ===== 이우현 ===== -->
+    <div class="teacher-box"
+    onclick="openProfile(
+    'T/T4.jpg',
+    '이우현',
+    '연기 PART',
+    document.getElementById('detail4').innerHTML
+    )">
+    <img src="T/T4.jpg">
+    <div class="teacher-info">
+      <h2>이우현</h2>
+      <p>연기 PART</p>
+      <div class="teacher-summary">
+        한국예술종합학교 연극원 연기과 졸업<br>
+        前 건택사단 강남캠프 부원장<br>
+        前 톤 연기학원 전임강사<br>
+        前 건택사단 홍대캠프 파트강사
+      </div>
+      <div id="detail4" class="teacher-detail">
+
+  <학력><br>
+  한국예술종합학교 연극원 연기과 졸업<br><br>
+
+  <티칭경력><br>
+  前 건택사단 강남캠프 부원장<br>
+  前 톤 연기학원 전임강사<br>
+  前 건택사단 홍대캠프 파트강사<br><br>
+
+  <공연 및 경력사항><br>
+  2019 연극 ‘명왕성에서’<br>
+  2019 연극 ‘방한림전’<br>
+  2019 영화 ‘우상’<br>
+  2020 연극 ‘곰팡이, 균’<br>
+  2021 연극 ‘나는 형제들에게 전화를 거네’<br>
+  2021 영화 ‘몽환’<br>
+  2022 연극 ‘액스트라오디너리’<br>
+  2023 연극 ‘담배의 해로움에 관하여’
+
+      </div>
+    </div>
+    </div>
+
+    <!-- ===== 김주연 ===== -->
+    <div class="teacher-box"
+    onclick="openProfile(
+    'T/T5.jpg',
+    '김주연',
+    '연기 PART',
+    document.getElementById('detail5').innerHTML
+    )">
+    <img src="T/T5.jpg">
+    <div class="teacher-info">
+      <h2>김주연</h2>
+      <p>연기 PART</p>
+      <div class="teacher-summary">
+        한국예술종합학교 연극원 연기과 졸업<br>
+        現 톤 연기학원 입시 강사<br>
+        現 마인액팅스튜디오 연기강사<br>
+        前 더베스트이엔엠 연기학원 연기강사<br>
+        前 CNC 액팅스쿨 연기강사<br>
+        前 에이탑 연기학원 입시강사
+      </div>
+      <div id="detail5" class="teacher-detail">
+
+  <학력><br>
+  한국예술종합학교 연극원 연기과 졸업<br><br>
+
+  <티칭경력><br>
+  現 톤 연기학원 입시 강사<br>
+  現 마인액팅스튜디오 연기강사<br>
+  前 더베스트이엔엠 연기학원 연기강사<br>
+  前 CNC 액팅스쿨 연기강사<br>
+  前 에이탑 연기학원 입시강사<br><br>
+
+  <공연 및 경력사항><br>
+  2025 영화 ‘엄마를 부탁해’<br>
+  2025 드라마 ‘아이 킬 유’<br>
+  2025 넷플릭스 ‘애나 만들기’<br>
+  2024 드라마 ‘눈물의 여왕’<br>
+  2023 드라마 ‘사주왕’
+
+      </div>
+    </div>
+    </div>
+
+  </div>
+
+  <!-- ====================== 특기 파트 ====================== -->
+  <h2 class="part-title">특기 파트</h2>
+  <div class="teachers-grid">
+
+    <!-- ===== 손정민 ===== -->
+    <div class="teacher-box"
+    onclick="openProfile(
+    'T/T2.jpg',
+    '손정민',
+    '부원장 / 무용 PART',
+    document.getElementById('detail2').innerHTML
+    )">
+    <img src="T/T2.jpg">
+    <div class="teacher-info">
+      <h2>손정민</h2>
+      <p>부원장 / 무용 PART</p>
+      <div class="teacher-summary">
+        한국예술종합학교 무용원 창작과 졸업<br>
+        現 열연연기아카데미 무용지도<br>
+        前 에이탑 뮤지컬연기학원 무용지도<br>
+        前 숨연기학원 무용지도
+      </div>
+      <div id="detail2" class="teacher-detail">
+
+  <학력><br>
+  한국예술종합학교 무용원 창작과 졸업<br><br>
+
+  <티칭경력><br>
+  現 열연연기아카데미 무용지도<br>
+  前 에이탑 뮤지컬연기학원 무용지도<br>
+  前 숨연기학원 무용지도<br><br>
+
+  <공연 및 경력사항><br>
+  무용수<br>
+  2023 리케이댄스 무용단<br>
+  2023 국립현대무용단 2023년 황수현 안무가 신작 ‘카베에’<br>
+  2020 부천문화재단 박지현 작가의 영화촬영 및 전시 ‘녹음이 빛나는 일대기’<br>
+  2020 Salon de casse 무용단<br>
+  2019 이스라엘 Kibbutz Contemporary Dance Company Journey Program 이수<br><br>
+
+  <안무, 연출><br>
+  2023 K-ARTS ON-ROAD 선정작 ‘Catch the eye'<br>
+  2022 서울문화재단 예술창작활동지원사업 선정 무용영화 ‘꿈길’<br>
+  2022 통영국제트리엔날레 잇기-섬과 섬 ‘물자국’, ‘물 좋고 공기 좋은’<br>
+  2020 플랫폼 팜파 기획_공모 선정작 ‘사이’
+
+      </div>
+    </div>
+    </div>
+
+    <!-- ===== 송기성 ===== -->
+    <div class="teacher-box"
+    onclick="openProfile(
+    'T/T3.jpg',
+    '송기성',
+    '뮤지컬 PART',
+    document.getElementById('detail3').innerHTML
+    )">
+    <img src="T/T3.jpg">
+    <div class="teacher-info">
+      <h2>송기성</h2>
+      <p>뮤지컬 PART</p>
+      <div class="teacher-summary">
+        서울시립대학교 성악과 졸업<br>
+        동 대학원 음악학 석사 수료 / 성악전공<br>
+        前 직선거리 연기학원 뮤지컬 강사<br>
+        現 광명시립합창단 상임단원
+      </div>
+      <div id="detail3" class="teacher-detail">
+
+  <학력><br>
+  서울시립대학교 성악과 졸업 및 동대학원 수료<br>
+  동 대학원 음악학 석사 수료 / 성악전공<br><br>
+
+  <티칭경력><br>
+  前 직선거리 연기학원 뮤지컬 강사<br><br>
+
+  <공연 및 경력사항><br>
+  2012 (사)한국음악협회 제31회 해외파견콩쿠르 입상<br>
+  2013년 국립오페라단 아카데미 수료<br>
+  오페라 ‘잔니스끼끼’, ‘박쥐’, ‘피가로의 결혼’ 주역<br>
+  뮤지컬 ‘레미제라블’ 조연<br>
+  창작뮤지컬 ‘아! 결혼’ 허생원 역<br>
+  뮤지컬 ‘영웅’<br>
+  영화 ‘위대한 쇼맨’ 각색 뮤지컬 바넘 역<br>
+  갈라콘서트 및 주조역<br>
+  중앙성가, 미완성출판사, 빛나라 출판사, 코러스센터 성가 CD녹음 솔로 및 합창 참여<br>
+  란콰이어 부지휘자<br>
+  Vespers 합창단 솔리스트<br>
+  코리아쳄버싱어즈 솔리스트<br>
+  GSGQ 남성합창단 솔리스트<br>
+  現 광명시립합창단 상임단원
+
+      </div>
+    </div>
+    </div>
+
+  </div>
+
+  <!-- ====================== 특강 파트 ====================== -->
+  <h2 class="part-title">특강 파트</h2>
+  <div class="teachers-grid">
+
+    <!-- ===== 방시은 ===== -->
+    <div class="teacher-box"
+    onclick="openProfile(
+    'T/T6.jpg',
+    '방시은',
+    '특강-연출과 PART',
+    document.getElementById('detail6').innerHTML
+    )">
+    <img src="T/T6.jpg">
+    <div class="teacher-info">
+      <h2>방시은</h2>
+      <p>특강-연출과 PART</p>
+      <div class="teacher-summary">
+        서울예술대학교 연극과 졸업
+      </div>
+      <div id="detail6" class="teacher-detail">
+
+  <학력><br>
+  서울예술대학교 연극과 졸업<br><br>
+
+  <공연 및 경력사항><br>
+  2021 연극 [얼음]<br>
+  2021 서울예술단 [방방곡곡 문화 공감 산업]<br>
+  2022 국립정동극장 정기공연 [초월]<br>
+  2023 국립정동극장 정기공연 [춘향 : 날개를 뜯긴 새]<br>
+  2023 국립정동극장 정기공연 [암덕 : 류(流)의 기원]<br>
+  2024 국립정동극장 정기공연 [소춘대유희]<br>
+  2025, 2026 싸이흠뻑쇼 SUMMERSWAG<br><br>
+  이외 대형 뮤지컬, 연극, 콘서트 다수
+
+      </div>
+    </div>
+    </div>
+
+    <!-- ===== 박정은 ===== -->
+    <div class="teacher-box"
+    onclick="openProfile(
+    'T/T7.jpg',
+    '박정은',
+    '특강-연출과 PART',
+    document.getElementById('detail7').innerHTML
+    )">
+    <img src="T/T7.jpg">
+    <div class="teacher-info">
+      <h2>박정은</h2>
+      <p>특강-연출과 PART</p>
+      <div class="teacher-summary">
+        한국예술학교 연극원 연출과 졸업
+      </div>
+      <div id="detail7" class="teacher-detail">
+
+  <학력><br>
+  한국예술학교 연극원 연출과 졸업<br><br>
+
+  <공연 및 경력사항><br>
+  강동아트센터 분만실 연출<br><br>
+  연출과 입시과외 다수 
+
+      </div>
+    </div>
+    </div>
+
+  </div>
+
+</section>
+
+<div class="profile-overlay" id="profileOverlay" onclick="closeProfile()">
+  <div class="profile-popup" onclick="event.stopPropagation()">
+    <img id="profileImg">
+    <div class="profile-text">
+      <h2 id="profileName"></h2>
+      <p id="profileRole"></p>
+      <div class="full-detail" id="profileDetail"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  학원명 : 리디트 연기학원<br>
+  학원등록번호 : 제4140호<br>
+  TEL 0507-1481-3478<br>
+  업무시간 : 매일 10:00~22:00<br>
+  대표 : 문규민<br>
+  사업자번호 : 824-95-01793<br>
+  서울시 관악구 남현동 602-253 1F
+</footer>
+
+<script>
+function openProfile(img,name,role,detail){
+  document.getElementById("profileOverlay").classList.add("active");
+  profileImg.src = img;
+  profileName.innerText = name;
+  profileRole.innerText = role;
+  profileDetail.innerHTML = detail;
+}
+
+function closeProfile(){
+  document.getElementById("profileOverlay").classList.remove("active");
+}
+
+// ======================
+// 모바일 햄버거 + 드롭다운 (아코디언)
+// SNS, 시설 페이지와 완전히 동일하게 적용
+// ======================
+const hamburger = document.querySelector(".hamburger");
+const nav = document.querySelector("header nav");
+const navItems = document.querySelectorAll("header .nav-item > a");
+
+function mobileMenuHandler() {
+  hamburger.addEventListener("click", () => {
+    nav.classList.toggle("active");
+    hamburger.classList.toggle("open");
+  });
+
+  navItems.forEach(item => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      const parent = item.parentElement;
+      parent.classList.toggle("active");
+    });
+  });
+}
+
+mobileMenuHandler();
+
+window.addEventListener("resize", () => {
+  nav.classList.remove("active");
+  hamburger.classList.remove("open");
+  document.querySelectorAll(".nav-item").forEach(ni => ni.classList.remove("active"));
+});
+</script>
+
+</body>
+</html>

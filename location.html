@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>오시는 길 | LEADIT</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+
+  <div class="logo">
+    <a href="index.html">
+      <img src="logo.png">
+    </a>
+  </div>
+
+  <!-- 모바일 햄버거 버튼 -->
+  <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav>
+    <div class="nav-item">
+      <a href="#">학원 소개</a>
+      <div class="dropdown">
+        <a href="greeting.html">인사말</a>
+        <a href="space.html">시설</a>
+        <a href="location.html">오시는 길</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">프로그램</a>
+      <div class="dropdown">
+        <a href="curriculum.html">커리큘럼</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">강사진</a>
+      <div class="dropdown">
+        <a href="teachers.html">강사진</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">합격자</a>
+      <div class="dropdown">
+        <a href="results.html">합격자 명단</a>
+        <a href="student.html">합격자 후기</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">문의</a>
+      <div class="dropdown">
+        <a href="sns.html">SNS</a>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<main style="margin-top:140px; padding: 0 40px;">
+  <h1>오시는 길</h1>
+
+  <section style="margin-top:32px;">
+    <h3>주소</h3>
+    <p>
+      서울 관악구 남현동 602-253 1F
+    </p>
+  </section>
+
+  <section style="margin-top:32px;">
+    <h3>지도</h3>
+
+    <!-- ✅ 구글 지도 적용 -->
+    <iframe
+      src="https://www.google.com/maps?q=서울%20관악구%20남현동%20602-253&output=embed"
+      width="100%"
+      height="420"
+      style="border:0; margin-top:12px;"
+      allowfullscreen=""
+      loading="lazy">
+    </iframe>
+
+    <!-- ✅ 네이버 지도 바로가기 -->
+    <p style="margin-top:16px;">
+      <a
+        href="https://map.naver.com/v5/search/서울%20관악구%20남현동%20602-253"
+        target="_blank"
+        style="color:#f0e79f; text-decoration:none;">
+        네이버 지도에서 보기 →
+      </a>
+    </p>
+  </section>
+</main>
+
+<footer>
+  학원명 : 리디트 연기학원<br>
+  학원등록번호 : 제4140호<br>
+  TEL 0507-1481-3478<br>
+  업무시간 : 매일 10:00~22:00<br>
+  대표 : 문규민<br>
+  사업자번호 : 824-95-01793<br>
+  서울시 관악구 남현동 602-253 1F
+</footer>
+
+<script>
+// ======================
+// 모바일 햄버거 + 드롭다운 (아코디언)
+// ======================
+const hamburger = document.querySelector(".hamburger");
+const nav = document.querySelector("header nav");
+const navItems = document.querySelectorAll("header .nav-item > a");
+
+function mobileMenuHandler() {
+  hamburger.addEventListener("click", () => {
+    nav.classList.toggle("active");
+    hamburger.classList.toggle("open");
+  });
+
+  navItems.forEach(item => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      const parent = item.parentElement;
+      parent.classList.toggle("active");
+    });
+  });
+}
+
+mobileMenuHandler();
+
+window.addEventListener("resize", () => {
+  nav.classList.remove("active");
+  hamburger.classList.remove("open");
+  document.querySelectorAll(".nav-item").forEach(ni => ni.classList.remove("active"));
+});
+</script>
+
+</body>
+</html>

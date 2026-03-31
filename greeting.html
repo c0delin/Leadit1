@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>인삿말 | LEADIT Acting Academy</title>
+
+<!-- 공통 모바일 CSS (style.css) -->
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* RESET */
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:'Pretendard',sans-serif;
+  background:#111;
+  color:#fff;
+  line-height:1.9;
+}
+
+/* ======================
+HEADER (PC 전용)
+====================== */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:20px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(6px);
+  z-index:1000;
+}
+
+.logo img{height:40px;}
+
+nav{display:flex;align-items:center;}
+
+.nav-item>a{
+  margin-left:30px;
+  text-decoration:none;
+  color:#ddd;
+  font-size:15px;
+}
+
+.nav-item{position:relative;}
+
+.nav-item::after{
+  content:"";
+  position:absolute;
+  top:100%;
+  width:100%;
+  height:8px;
+}
+
+.dropdown{
+  position:absolute;
+  top:40px;
+  left:0;
+  width:180px;
+  background:#000;
+  padding:10px 0 22px;
+  opacity:0;
+  transform:translateY(-10px);
+  visibility:hidden;
+  transition:opacity .35s ease,transform .35s ease,visibility 0s linear .35s;
+}
+
+.nav-item:hover .dropdown,
+.dropdown:hover{
+  opacity:1;
+  transform:translateY(0);
+  visibility:visible;
+  transition-delay:0s;
+}
+
+.dropdown a{
+  display:block;
+  padding:14px 22px;
+  font-size:15px;
+  color:#ccc;
+  text-decoration:none;
+  transition:color .25s ease;
+}
+
+.dropdown a:hover{
+  color:#f0e79f;
+}
+
+/* ======================
+GREETING SECTION
+====================== */
+.greeting-section{
+  padding:160px 10% 100px;
+  max-width:900px;
+  margin:auto;
+}
+
+.greeting-title{
+  font-size:34px;
+  margin-bottom:40px;
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeUp .7s ease forwards;
+  animation-delay:.1s;
+}
+
+.greeting-quote{
+  font-size:24px;
+  font-weight:700;
+  margin-bottom:40px;
+  letter-spacing:1px;
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeUp .7s ease forwards;
+  animation-delay:.4s;
+}
+
+.greeting-section p{
+  margin-bottom:22px;
+  color:#ddd;
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeUp .7s ease forwards;
+}
+
+/* 🔥 문장 순차 등장 딜레이 */
+.greeting-section p:nth-of-type(1){animation-delay:.7s;}
+.greeting-section p:nth-of-type(2){animation-delay:1.0s;}
+.greeting-section p:nth-of-type(3){animation-delay:1.3s;}
+.greeting-section p:nth-of-type(4){animation-delay:1.6s;}
+.greeting-section p:nth-of-type(5){animation-delay:1.9s;}
+.greeting-last{animation-delay:2.2s;}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* FOOTER */
+footer{
+  padding:60px;
+  text-align:center;
+  background:#000;
+  color:#777;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    <a href="index.html">
+      <img src="logo.png">
+    </a>
+  </div>
+
+  <!-- 모바일 햄버거 버튼 -->
+  <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav>
+    <div class="nav-item">
+      <a href="#">학원 소개</a>
+      <div class="dropdown">
+        <a href="greeting.html">인사말</a>
+        <a href="space.html">시설</a>
+        <a href="location.html">오시는 길</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">프로그램</a>
+      <div class="dropdown">
+        <a href="curriculum.html">커리큘럼</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">강사진</a>
+      <div class="dropdown">
+        <a href="teachers.html">강사진</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">합격자</a>
+      <div class="dropdown">
+        <a href="results.html">합격자 명단</a>
+        <a href="student.html">합격자 후기</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">문의</a>
+      <div class="dropdown">
+        <a href="sns.html">SNS</a>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+<section class="greeting-section">
+
+  <h1 class="greeting-title">인사말</h1>
+
+  <div class="greeting-quote">
+    “합격은 디테일로 결정된다”
+  </div>
+
+  <p>
+    리디트(LEADIT)는 DETAIL이라는 단어의 철자 배열을 바꿔 탄생한 이름입니다.<br>
+    그만큼 우리는 ‘디테일’을 교육의 핵심 가치로 둡니다.
+  </p>
+
+  <p>
+    저는 누구보다 섬세하고 집요한 선생님이고,<br>
+    리디트는 그런 선생님들만이 모인 학원입니다.
+  </p>
+
+  <p>
+    저희는 학생 한 명, 한 명을 깊이 들여다보며,<br>
+    겉으로 드러난 실력보다 그 안에 숨어 있는 가능성을 분석하고,<br>
+    각자의 매력과 특징을 정확히 짚어 ‘합격’이라는 결과로 완성합니다.
+  </p>
+
+  <p>
+    입시는 학생 인생의 첫 관문입니다.<br>
+    그 중요한 순간을 대충, 적당히 함께하는 일은<br>
+    제 성격에도, 리디트의 방식에도 맞지 않습니다.
+  </p>
+
+  <p>
+    ‘디테일’이라는 단어를 이름으로, 슬로건으로 내걸 수 있을 만큼<br>
+    리디트는 그 어떤 곳보다 집요하게 가르치고 끝까지 케어합니다.
+  </p>
+
+  <p class="greeting-last">
+    이 약속에 제 인생을 걸겠습니다.
+  </p>
+
+</section>
+
+<footer>
+  학원명 : 리디트 연기학원<br>
+  학원등록번호 : 제4140호<br>
+  TEL 0507-1481-3478<br>
+  업무시간 : 매일 10:00~22:00<br>
+  대표 : 문규민<br>
+  사업자번호 : 824-95-01793<br>
+  서울시 관악구 남현동 602-253 1F
+</footer>
+
+<script>
+// ======================
+// 모바일 햄버거 + 드롭다운 (아코디언)
+// ======================
+const hamburger = document.querySelector(".hamburger");
+const nav = document.querySelector("header nav");
+const navItems = document.querySelectorAll("header .nav-item > a");
+
+function mobileMenuHandler() {
+  hamburger.addEventListener("click", () => {
+    nav.classList.toggle("active");
+    hamburger.classList.toggle("open");
+  });
+
+  navItems.forEach(item => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      const parent = item.parentElement;
+      parent.classList.toggle("active");
+    });
+  });
+}
+
+mobileMenuHandler();
+
+window.addEventListener("resize", () => {
+  nav.classList.remove("active");
+  hamburger.classList.remove("open");
+  document.querySelectorAll(".nav-item").forEach(ni => ni.classList.remove("active"));
+});
+</script>
+
+</body>
+</html>

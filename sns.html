@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SNS | LEADIT</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* 🔥 SNS 전체 영역을 화면 중앙으로 */
+main{
+  min-height:80vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+/* 카드 정렬 */
+.sns-wrap{
+  margin-top:50px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* 카드 */
+.insta-card{
+  width:420px;
+  background:#000;
+  border:1px solid #222;
+  border-radius:16px;
+  padding:50px 30px;
+  text-align:center;
+  text-decoration:none;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+  transition:all .4s ease;
+}
+
+/* 골드 라인 */
+.insta-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:16px;
+  padding:1px;
+  background:linear-gradient(120deg,#f0e79f,transparent,#f0e79f);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+  opacity:.2;
+  transition:.4s;
+}
+
+.insta-card:hover::before{
+  opacity:1;
+}
+
+/* hover 움직임 */
+.insta-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 25px 50px rgba(0,0,0,.6);
+}
+
+/* 🔥 로고 이미지 */
+.insta-logo{
+  width:70px;
+  margin-bottom:20px;
+  opacity:.9;
+}
+
+/* 텍스트 */
+.insta-title{
+  font-size:22px;
+  font-weight:600;
+  margin-bottom:10px;
+}
+
+.insta-id{
+  color:#aaa;
+  font-size:16px;
+}
+
+.insta-arrow{
+  margin-top:28px;
+  font-size:14px;
+  color:#f0e79f;
+  letter-spacing:.08em;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    <a href="index.html">
+      <img src="logo.png">
+    </a>
+  </div>
+
+  <!-- 모바일 햄버거 버튼 -->
+  <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav>
+    <div class="nav-item">
+      <a href="#">학원 소개</a>
+      <div class="dropdown">
+        <a href="greeting.html">인사말</a>
+        <a href="space.html">시설</a>
+        <a href="location.html">오시는 길</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">프로그램</a>
+      <div class="dropdown">
+        <a href="curriculum.html">커리큘럼</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">강사진</a>
+      <div class="dropdown">
+        <a href="teachers.html">강사진</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">합격자</a>
+      <div class="dropdown">
+        <a href="results.html">합격자 명단</a>
+        <a href="student.html">합격자 후기</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">문의</a>
+      <div class="dropdown">
+        <a href="sns.html">SNS</a>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<!-- ======================
+ SNS CONTENT
+====================== -->
+<main>
+
+  <h1>SNS</h1>
+
+  <p style="color:#777; margin-top:12px;">
+    LEADIT Acting Academy Official Channel
+  </p>
+
+  <div class="sns-wrap">
+
+    <!-- 🔥 로고 활용 인스타 카드 -->
+    <a href="https://www.instagram.com/leadit_acting/"
+       target="_blank"
+       class="insta-card">
+
+        <img src="logo.png" class="insta-logo" alt="LEADIT">
+
+        <div class="insta-title">
+          LEADIT INSTAGRAM
+        </div>
+
+        <div class="insta-id">
+          @leadit_acting
+        </div>
+
+        <div class="insta-arrow">
+          VISIT PROFILE →
+        </div>
+
+    </a>
+
+  </div>
+
+</main>
+
+<footer>
+  학원명 : 리디트 연기학원<br>
+  학원등록번호 : 제4140호<br>
+  TEL 0507-1481-3478<br>
+  업무시간 : 매일 10:00~22:00<br>
+  대표 : 문규민<br>
+  사업자번호 : 824-95-01793<br>
+  서울시 관악구 남현동 602-253 1F
+</footer>
+
+<script>
+// ======================
+// 모바일 햄버거 + 드롭다운 (아코디언)
+// ======================
+const hamburger = document.querySelector(".hamburger");
+const nav = document.querySelector("header nav");
+const navItems = document.querySelectorAll("header .nav-item > a");
+
+function mobileMenuHandler() {
+  hamburger.addEventListener("click", () => {
+    nav.classList.toggle("active");
+    hamburger.classList.toggle("open");
+  });
+
+  navItems.forEach(item => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      const parent = item.parentElement;
+      parent.classList.toggle("active");
+    });
+  });
+}
+
+mobileMenuHandler();
+
+window.addEventListener("resize", () => {
+  nav.classList.remove("active");
+  hamburger.classList.remove("open");
+  document.querySelectorAll(".nav-item").forEach(ni => ni.classList.remove("active"));
+});
+</script>
+
+</body>
+</html>

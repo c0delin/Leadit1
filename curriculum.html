@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>커리큘럼 | LEADIT</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* ======================
+CURRICULUM PAGE
+====================== */
+
+.curriculum-section{
+  padding:140px 0 80px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.curriculum-img{
+  width:100%;
+  margin-bottom:120px;
+  display:block;
+  border-radius:6px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ======================
+HEADER
+====================== -->
+<header>
+
+  <div class="logo">
+    <a href="index.html">
+      <img src="logo.png">
+    </a>
+  </div>
+
+  <!-- 모바일 햄버거 버튼 -->
+  <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav>
+    <div class="nav-item">
+      <a href="#">학원 소개</a>
+      <div class="dropdown">
+        <a href="greeting.html">인사말</a>
+        <a href="space.html">시설</a>
+        <a href="location.html">오시는 길</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">프로그램</a>
+      <div class="dropdown">
+        <a href="curriculum.html">커리큘럼</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">강사진</a>
+      <div class="dropdown">
+        <a href="teachers.html">강사진</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">합격자</a>
+      <div class="dropdown">
+        <a href="results.html">합격자 명단</a>
+        <a href="student.html">합격자 후기</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">문의</a>
+      <div class="dropdown">
+        <a href="sns.html">SNS</a>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<!-- ======================
+CURRICULUM IMAGES
+====================== -->
+
+<section class="curriculum-section">
+
+  <!-- K1 -->
+  <img src="K1.png" class="curriculum-img">
+
+  <!-- K2 -->
+  <img src="K2.png" class="curriculum-img">
+
+  <!-- K3 -->
+  <img src="K3.png" class="curriculum-img">
+
+  <!-- K4 -->
+  <img src="K4.png" class="curriculum-img">
+
+  <!-- K5 -->
+  <img src="K5.png" class="curriculum-img">
+
+</section>
+
+
+<!-- ======================
+FOOTER
+====================== -->
+<footer>
+  학원명 : 리디트 연기학원<br>
+  학원등록번호 : 제4140호<br>
+  TEL 0507-1481-3478<br>
+  업무시간 : 매일 10:00~22:00<br>
+  대표 : 문규민<br>
+  사업자번호 : 824-95-01793<br>
+  서울시 관악구 남현동 602-253 1F
+</footer>
+
+<script>
+// ======================
+// 모바일 햄버거 + 드롭다운 (아코디언)
+// ======================
+const hamburger = document.querySelector(".hamburger");
+const nav = document.querySelector("header nav");
+const navItems = document.querySelectorAll("header .nav-item > a");
+
+function mobileMenuHandler() {
+  hamburger.addEventListener("click", () => {
+    nav.classList.toggle("active");
+    hamburger.classList.toggle("open");
+  });
+
+  navItems.forEach(item => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      const parent = item.parentElement;
+      parent.classList.toggle("active");
+    });
+  });
+}
+
+mobileMenuHandler();
+
+window.addEventListener("resize", () => {
+  nav.classList.remove("active");
+  hamburger.classList.remove("open");
+  document.querySelectorAll(".nav-item").forEach(ni => ni.classList.remove("active"));
+});
+</script>
+
+</body>
+</html>
