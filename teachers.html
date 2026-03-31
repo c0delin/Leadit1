@@ -88,6 +88,7 @@ PROFILE POPUP
   height:340px;
   object-fit:cover;
   border-radius:12px;
+  flex-shrink:0;
 }
 
 .profile-text h2{
@@ -137,7 +138,9 @@ PROFILE POPUP
   gap: 30px;
 }
 
-/* 모바일에서 제목 크기 + 그리드 1열로 */
+/* ======================
+모바일 전용 스타일
+====================== */
 @media (max-width: 768px) {
   .part-title{
     font-size: 24px;
@@ -154,8 +157,36 @@ PROFILE POPUP
     width:100%;
     height:280px;
   }
-}
 
+  /* ====================
+     모바일에서 POPUP: 사진 위, 공연 및 경력사항 아래로 배치
+     ==================== */
+  .profile-popup{
+    width: 92%;
+    max-width: 520px;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    max-height: 85vh;
+  }
+  
+  .profile-popup img{
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+  
+  .profile-text h2{
+    font-size: 24px;
+  }
+  
+  .profile-text .full-detail{
+    font-size: 15.5px;
+    line-height: 1.85;
+  }
+}
 </style>
 </head>
 
